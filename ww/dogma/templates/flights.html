@@ -1,0 +1,25 @@
+<!-- templates/flights.html -->
+{% extends 'base.html' %}
+
+{% block title %}Список рейсов{% endblock %}
+
+{% block content %}
+    <h2>Доступные рейсы</h2>
+    <ul>
+        {% for flight in flights %}
+            <li>
+                {{ flight }} — {{ flight.departure_airport }} → {{ flight.arrival_airport }}
+                (вылет: {{ flight.departure_time|date:"d.m.Y H:i" }})
+            </li>
+        {% empty %}
+            <li>Рейсов пока нет.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        body { background-color: #f0f8ff; }
+        h2 { color: #2c3e50; }
+    </style>
+{% endblock %}
